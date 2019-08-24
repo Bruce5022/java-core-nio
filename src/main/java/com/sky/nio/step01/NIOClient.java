@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class NIOClient {
     /**
@@ -35,20 +32,8 @@ public class NIOClient {
     }
 
     public static void main(String[] args) throws IOException {
-//        NIOClient client = new NIOClient();
-//        client.initClient("localhost", 8080);
-//        client.sendAndRecv("I am a client");
-
-        List<Integer> list = new ArrayList<>();
-        for (int row = 0; row < 10; row++) {
-            list.add(row);
-        }
-        System.out.println(list);
-        Iterator<Integer> iterator = list.iterator();
-        while (iterator.hasNext()){
-            System.out.println( iterator.next());
-            iterator.remove();
-        }
-        System.out.println(list);
+        NIOClient client = new NIOClient();
+        client.initClient("localhost", 8080);
+        client.sendAndRecv("I am a client");
     }
 }
