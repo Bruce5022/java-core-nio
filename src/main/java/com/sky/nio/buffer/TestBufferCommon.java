@@ -27,7 +27,7 @@ import java.nio.ByteBuffer;
  *  limit: 界限或上限,表示缓冲区中可以操作数据的大小.(limit后面的数据不能进行读写)
  *  capacity:容量,表示缓冲区中最大存储数据的容量.一旦声明不能改变.
  */
-public class TestBuffer {
+public class TestBufferCommon {
 
     public static void main(String[] args) {
         // 1.分配一个指定大小的缓冲区
