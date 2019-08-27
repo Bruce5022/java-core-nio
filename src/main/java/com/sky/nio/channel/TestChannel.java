@@ -31,6 +31,10 @@ public class TestChannel {
         test1();
     }
 
+    /**
+     * 1.利用通道完成文件的复制(非直接缓冲区)
+     * @throws Exception
+     */
     public static void test1() throws Exception {
         FileInputStream fis = new FileInputStream("1.jpg");
         FileOutputStream fos = new FileOutputStream("2.jpg");
@@ -57,4 +61,10 @@ public class TestChannel {
         fos.close();
         fis.close();
     }
+
+    /**
+     * 2.使用直接缓冲区完成文件的复制(内存映射文件)
+     * @throws Exception
+     */
+    public static void test2() throws Exception {}
 }
