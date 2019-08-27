@@ -23,21 +23,24 @@ import java.nio.channels.FileChannel;
  * 2.在JDK 1.7中的NIO.2针对各个通道提供了静态方法open()
  * <p>
  * 3.在JDK 1.7中的NIO.2的Files工具类的newByteChannel()
+ *
+ * 4.通道之间的数据传输transferFrom()和transferTo()
  */
 public class TestChannel {
 
     public static void main(String[] args) throws Exception {
-
-        test1();
+//        test1();
     }
 
     /**
      * 1.利用通道完成文件的复制(非直接缓冲区)
+     * 耗时：0.446
      * @throws Exception
      */
     public static void test1() throws Exception {
-        FileInputStream fis = new FileInputStream("1.jpg");
-        FileOutputStream fos = new FileOutputStream("2.jpg");
+        long start = System.currentTimeMillis();
+        FileInputStream fis = new FileInputStream("111.qsv");
+        FileOutputStream fos = new FileOutputStream("222.qsv");
 
         // 获取通道
         FileChannel inChannel = fis.getChannel();
@@ -60,11 +63,8 @@ public class TestChannel {
         inChannel.close();
         fos.close();
         fis.close();
+        System.out.println("耗时：" + (System.currentTimeMillis()-start)/1000.0);
     }
 
-    /**
-     * 2.使用直接缓冲区完成文件的复制(内存映射文件)
-     * @throws Exception
-     */
-    public static void test2() throws Exception {}
+
 }
