@@ -62,17 +62,19 @@ public class TestNioServer {
                         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
                         int len;
-                        while ((len = socketChannel.read(byteBuffer)) != -1) {
+                        while ((len = socketChannel.read(byteBuffer)) > 0) {
                             byteBuffer.flip();
                             System.out.println(new String(byteBuffer.array(),0,len));
+                            socketChannel.write(byteBuffer);
                             byteBuffer.clear();
                         }
                     }
-                    // 15.取消选择键
+                    // 15.取消选择键selectionKey
                     iterator.remove();
                 }
             }
             // 6.关闭通道
+            serverSocketChannel.close();
         } catch (IOException e) {
             throw e;
         }

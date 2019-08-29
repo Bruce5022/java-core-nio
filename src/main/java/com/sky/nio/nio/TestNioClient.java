@@ -3,11 +3,8 @@ package com.sky.nio.nio;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Date;
+import java.util.Scanner;
 
 /**
  * 客户端
@@ -31,20 +28,14 @@ public class TestNioClient {
             ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
             // 4.读取本地文件,并发送到服务端
-            byteBuffer.put(new Date().toString().getBytes());
-            byteBuffer.flip();
-            socketChannel.write(byteBuffer);
-            byteBuffer.clear();
-
-            // 4.接收服务端反馈
-            int len;
-            while ((len = socketChannel.read(byteBuffer)) != -1) {
+            Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNext()){
+                String str = scanner.next();
+                byteBuffer.put(str.getBytes());
                 byteBuffer.flip();
-                System.out.println(new String(byteBuffer.array(),0,len));
+                socketChannel.write(byteBuffer);
                 byteBuffer.clear();
             }
-
-
 
             // 5.关闭通道
             socketChannel.close();
